@@ -1,168 +1,61 @@
-/* Základní reset a typografie */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurzy - Agentura Verona (Prototyp)</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
 
-body {
-    font-family: 'Montserrat', sans-serif;
-    color: #1c1c1c;
-    background-color: #ffffff;
-    line-height: 1.6;
-}
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1>Vzdělávejte se s profesionály</h1>
+            <p>Investujte do svých dovedností. Naše intenzivní kurzy vedené experty z oboru vás posunou o krok napřed.</p>
+        </div>
+    </header>
 
-/* 1. Hero sekce */
-.hero-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                url('https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1600&auto=format&fit=crop') no-repeat center center/cover;
-    height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #ffffff;
-    padding: 20px;
-}
+    <main class="courses-container">
+        <div class="courses-grid">
+            
+            <article class="course-card">
+                <div class="course-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=600&auto=format&fit=crop" alt="Kurz stylingu">
+                    <span class="badge">Poslední místa</span>
+                </div>
+                <div class="course-info">
+                    <h3>Kurz stylingu & vizáže</h3>
+                    <ul class="course-meta">
+                        <li><span>📅</span> Termín: 15. června 2026</li>
+                        <li><span>📍</span> Místo: Studio Verona, Praha</li>
+                        <li><span>👤</span> Kapacita: Max. 8 osob</li>
+                    </ul>
+                    <div class="course-price">4 900 Kč</div>
+                    <a href="#" class="btn-buy">Rezervovat místo</a>
+                </div>
+            </article>
 
-.hero-content h1 {
-    font-size: 2.5rem;
-    font-weight: 300;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 15px;
-}
+            <article class="course-card">
+                <div class="course-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=600&auto=format&fit=crop" alt="Kurz modelingu">
+                </div>
+                <div class="course-info">
+                    <h3>Profesionální Modeling</h3>
+                    <ul class="course-meta">
+                        <li><span>📅</span> Termín: 22. června 2026</li>
+                        <li><span>📍</span> Místo: Studio Verona, Praha</li>
+                        <li><span>👤</span> Kapacita: Max. 10 osob</li>
+                    </ul>
+                    <div class="course-price">5 500 Kč</div>
+                    <a href="#" class="btn-buy">Rezervovat místo</a>
+                </div>
+            </article>
 
-.hero-content p {
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto;
-    font-weight: 300;
-}
+        </div>
+    </main>
 
-/* 2. Grid kontejner */
-.courses-container {
-    max-width: 1200px;
-    margin: 60px auto;
-    padding: 0 20px;
-}
-
-.courses-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
-}
-
-/* 3. Karta produktu (Styl šablony Top Model) */
-.course-card {
-    background: #ffffff;
-    border: 1px solid #eaeaea; /* Velmi jemná linka */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.course-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-}
-
-.course-image-wrapper {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 4 / 3;
-}
-
-.course-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.course-card:hover .course-image-wrapper img {
-    transform: scale(1.05); /* Jemný zoom efekt na fotce při hoveru */
-}
-
-/* Elegantní štítek */
-.badge {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background-color: #000000;
-    color: #ffffff;
-    padding: 5px 10px;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-}
-
-/* Detaily kurzu */
-.course-info {
-    padding: 30px;
-}
-
-.course-info h3 {
-    font-size: 1.3rem;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-    color: #000000;
-}
-
-.course-meta {
-    list-style: none;
-    margin-bottom: 25px;
-}
-
-.course-meta li {
-    font-size: 0.9rem;
-    color: #666666;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-}
-
-.course-meta li span {
-    margin-right: 10px;
-    font-size: 1rem;
-}
-
-.course-price {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #000000;
-    margin-bottom: 20px;
-}
-
-/* 4. Tlačítko - Klíčový prvek brandu */
-.btn-buy {
-    display: block;
-    width: 100%;
-    text-align: center;
-    background-color: #000000; /* Černá barva ladící s Top Model */
-    color: #ffffff;
-    text-decoration: none;
-    padding: 15px;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    border: 1px solid #000000;
-    transition: all 0.3s ease;
-}
-
-.btn-buy:hover {
-    background-color: #ffffff;
-    color: #000000; /* Inverzní efekt při najetí myší */
-}
-
-/* Responzivita */
-@media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 1.8rem;
-    }
-    .courses-container {
-        margin: 40px auto;
-    }
-}
+</body>
+</html>
