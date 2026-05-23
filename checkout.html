@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Specifické styly pouze pro stránku Pokladny, které se doplňují k hlavnímu style.css */
+        /* Specifické styly pouze pro stránku Pokladny */
         .checkout-container {
             max-width: 1000px;
             margin: 40px auto;
@@ -151,6 +151,7 @@
             margin-bottom: 20px;
             font-size: 0.95rem;
             color: #aab7c4;
+            font-family: monospace; /* Pro hezčí rozestupy čísel karty */
         }
 
         .secure-notice {
@@ -170,22 +171,22 @@
             
             <div class="checkout-column">
                 <h3 class="checkout-section-title">Fakturační údaje</h3>
-                <form id="checkout-form" onsubmit="event.preventDefault(); alert('Děkujeme! Rezervace kurzu byla úspěšně zpracována.'); window.location.href='index.html';">
+                <form id="checkout-form" onsubmit="event.preventDefault(); alert('Děkujeme! Rezervace kurzu byla úspěšně zpracována. Přístupové údaje jsme vám odeslali na e-mail.'); window.location.href='index.html';">
                     <div class="form-group">
                         <label for="first-name">Jméno</label>
-                        <input type="text" id="first-name" class="form-control" required placeholder="Napište své jméno">
+                        <input type="text" id="first-name" class="form-control" required placeholder="Např. Jan">
                     </div>
                     <div class="form-group">
                         <label for="last-name">Příjmení</label>
-                        <input type="text" id="last-name" class="form-control" required placeholder="Napište své příjmení">
+                        <input type="text" id="last-name" class="form-control" required placeholder="Např. Novák">
                     </div>
                     <div class="form-group">
                         <label for="email">E-mailová adresa</label>
-                        <input type="email" id="email" class="form-control" required placeholder="jmeno@priklad.cz">
+                        <input type="email" id="email" class="form-control" required placeholder="jan.novak@email.cz">
                     </div>
                     <div class="form-group">
                         <label for="phone">Telefonní číslo</label>
-                        <input type="tel" id="phone" class="form-control" required placeholder="+420 777 777 777">
+                        <input type="tel" id="phone" class="form-control" required placeholder="+420 777 123 456">
                     </div>
                 </form>
             </div>
@@ -199,8 +200,8 @@
                         <strong>4 900 Kč</strong>
                     </div>
                     <div class="summary-row">
-                        <span>Doprava (Elektronická lístek)</span>
-                        <span>0 Kč</span>
+                        <span>Doprava (E-kurz do e-mailu)</span>
+                        <span>Zdarma</span>
                     </div>
                     <div class="summary-row total">
                         <span>Celkem k úhradě</span>
@@ -211,13 +212,13 @@
                 <h3 class="checkout-section-title">Platba</h3>
                 <div class="payment-methods">
                     <div class="stripe-express-btn">
-                         Pay / G Pay (Rychlá platba)
+                        Apple Pay / Google Pay
                     </div>
                     
                     <div class="stripe-separator">nebo platba kartou</div>
 
                     <div class="card-element-mock">
-                        💳 4242  4242  4242  4242 &nbsp;&nbsp;&nbsp;&nbsp; MM / YY &nbsp;&nbsp;&nbsp;&nbsp; CVC
+                        4242  4242  4242  4242 &nbsp;&nbsp;&nbsp;&nbsp; MM / YY &nbsp;&nbsp;&nbsp;&nbsp; CVC
                     </div>
 
                     <button type="submit" form="checkout-form" class="btn-buy" style="border:none; cursor:pointer;">
@@ -225,7 +226,7 @@
                     </button>
 
                     <div class="secure-notice">
-                        🔒 Přenos dat je šifrován. Platbu zabezpečuje Stripe.
+                        Zabezpečený přenos dat. Platbu zajišťuje Stripe.
                     </div>
                 </div>
             </div>
