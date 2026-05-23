@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zabezpečená objednávka - Agentura Verona</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Specifické styly pouze pro stránku Pokladny, které se doplňují k hlavnímu style.css */
+        .checkout-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: block;
+        }
+        
+        .checkout-title {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            font-size: 1.8rem;
+        }
+
+        .checkout-layout {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: separate;
+            border-spacing: 40px 0;
+        }
+
+        .checkout-column {
+            display: table-cell;
+            vertical-align: top;
+            width: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-layout, .checkout-column {
+                display: block;
+                width: 100%;
+            }
+            .checkout-layout {
+                border-spacing: 0;
+            }
+            .checkout-column {
+                margin-bottom: 30px;
+            }
+        }
+
+        .checkout-section-title {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #1c1c1c;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            color: #666;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #eaeaea;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #000000;
+        }
+
+        /* Rekapitulace objednávky */
+        .order-summary-box {
+            background-color: #fbfbfb;
+            border: 1px solid #eaeaea;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .summary-row.total {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eaeaea;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #000;
+        }
+
+        /* Platební metody (Stripe simulace) */
+        .payment-methods {
+            background-color: #ffffff;
+            border: 1px solid #eaeaea;
+            padding: 25px;
+        }
+
+        .stripe-express-btn {
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .stripe-separator {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .card-element-mock {
+            border: 1px solid #eaeaea;
+            padding: 14px;
+            background-color: #fff;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            color: #aab7c4;
+        }
+
+        .secure-notice {
+            font-size: 0.8rem;
+            color: #666;
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="checkout-container">
+        <h2 class="checkout-title">Dokončení rezervace</h2>
+
+        <div class="checkout-layout">
+            
+            <div class="checkout-column">
+                <h3 class="checkout-section-title">Fakturační údaje</h3>
+                <form id="checkout-form" onsubmit="event.preventDefault(); alert('Děkujeme! Rezervace kurzu byla úspěšně zpracována.'); window.location.href='index.html';">
+                    <div class="form-group">
+                        <label for="first-name">Jméno</label>
+                        <input type="text" id="first-name" class="form-control" required placeholder="Napište své jméno">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Příjmení</label>
+                        <input type="text" id="last-name" class="form-control" required placeholder="Napište své příjmení">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mailová adresa</label>
+                        <input type="email" id="email" class="form-control" required placeholder="jmeno@priklad.cz">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefonní číslo</label>
+                        <input type="tel" id="phone" class="form-control" required placeholder="+420 777 777 777">
+                    </div>
+                </form>
+            </div>
+
+            <div class="checkout-column">
+                <h3 class="checkout-section-title">Vaše objednávka</h3>
+                
+                <div class="order-summary-box">
+                    <div class="summary-row">
+                        <span>Kurz stylingu & vizáže (1×)</span>
+                        <strong>4 900 Kč</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Doprava (Elektronická lístek)</span>
+                        <span>0 Kč</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Celkem k úhradě</span>
+                        <span>4 900 Kč</span>
+                    </div>
+                </div>
+
+                <h3 class="checkout-section-title">Platba</h3>
+                <div class="payment-methods">
+                    <div class="stripe-express-btn">
+                         Pay / G Pay (Rychlá platba)
+                    </div>
+                    
+                    <div class="stripe-separator">nebo platba kartou</div>
+
+                    <div class="card-element-mock">
+                        💳 4242  4242  4242  4242 &nbsp;&nbsp;&nbsp;&nbsp; MM / YY &nbsp;&nbsp;&nbsp;&nbsp; CVC
+                    </div>
+
+                    <button type="submit" form="checkout-form" class="btn-buy" style="border:none; cursor:pointer;">
+                        Zaplatit 4 900 Kč
+                    </button>
+
+                    <div class="secure-notice">
+                        🔒 Přenos dat je šifrován. Platbu zabezpečuje Stripe.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
